@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	fmt.Println(averageNumber("100-abc-200-def-350"))
+	fmt.Println(wholeStory("100-abc-200-def-350-g"))
 }
 
 /*  Test the validity of a string in the spec
@@ -66,8 +66,15 @@ func averageNumber(str string) float32 {
  *  Returns a text that is composed from all the text words separated by spaces
  *
  *  Estimated time: 5min
- *  Used time: ...
+ *  Used time: 7min
  */
 func wholeStory(str string) string {
-	return ""
+	items := strings.Split(str, "-")
+	var resList []string
+
+	for i := 1; i < len(items); i += 2 {
+		resList = append(resList, items[i])
+	}
+
+	return strings.Join(resList, " ")
 }

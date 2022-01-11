@@ -131,3 +131,16 @@ func storyStats(str string) (shortest string, longest string, meanLen float32, s
 
 	return shortest, longest, meanLen, sameLen
 }
+
+/*  Takes a boolean flag
+ *	Generates a string according to the spec if the flag is true, otherwise generate a string that does not conform
+ *
+ *  Returns the generated string
+ *
+ *  Estimated time: 30min
+ *  Used time: ...
+ */
+
+func generate(valid bool) string {
+
+}

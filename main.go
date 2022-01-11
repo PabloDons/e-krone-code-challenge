@@ -3,13 +3,16 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	fmt.Println(storyStats("100-abc-200-def-350-ghij-3-a"))
+	generated := generate(true)
+	fmt.Println(generated)
+	fmt.Println(testValidity(generated))
 }
 
 /*  Test the validity of a string in the spec
@@ -141,7 +144,28 @@ func storyStats(str string) (shortest string, longest string, meanLen float32, s
  *  Estimated time: 30min
  *  Used time: ...
  */
+const CHARS string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
 func generate(valid bool) string {
-
+	items := []string{}
+	if valid {
+		numItems := rand.Intn(21)
+		for i := 0; i < numItems; i++ {
+			if i%2 == 0 {
+				// generate random number
+				items = append(items, fmt.Sprint(rand.Intn(1000)))
+			} else {
+				// generate random string
+				strLen := rand.Intn(10) + 1
+				chars := []string{}
+				for j := 0; j < strLen; j++ {
+					chars = append(chars, string(CHARS[rand.Intn(len(CHARS))]))
+				}
+				items = append(items, strings.Join(chars, ""))
+			}
+		}
+		return strings.Join(items, "-")
+	} else {
+		return ""
+	}
 }

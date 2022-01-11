@@ -78,3 +78,13 @@ func wholeStory(str string) string {
 
 	return strings.Join(resList, " ")
 }
+
+/*  Takes a string in the given spec
+ *  Returns some stats about the string
+ *
+ *	Estimated time: 25min
+ *  Used time: ...
+ */
+func storyStats() (shortest string, longest string, meanLen int, sameLen []string) {
+
+}

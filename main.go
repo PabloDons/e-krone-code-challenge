@@ -12,7 +12,7 @@ import (
 const CHARS string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
 func main() {
-	generated := generate(true)
+	generated := generate(false)
 	fmt.Println(generated)
 	fmt.Println(testValidity(generated))
 }
@@ -144,7 +144,7 @@ func storyStats(str string) (shortest string, longest string, meanLen float32, s
  *  Returns the generated string
  *
  *  Estimated time: 30min
- *  Used time: ...
+ *  Used time: 34min
  */
 func generate(valid bool) string {
 	items := []string{}
@@ -166,6 +166,35 @@ func generate(valid bool) string {
 		}
 		return strings.Join(items, "-")
 	} else {
-		return ""
+		/*There are many approaches here.
+		I would personally start with a valid string,
+		then write something to break each individual requirement for the spec.
+		However, since this isn't specified, and is much more work,
+		I've opted to do the easier approach of generating random strings until
+		one of them is invalid
+		*/
+		itemsLen := rand.Intn(21)
+		items := []string{}
+		for i := 0; i < itemsLen; i++ {
+			strLen := rand.Intn(20)
+			chars := []string{}
+			for j := 0; j < strLen; j++ {
+				charIndex := rand.Intn(len(CHARS))
+				if charIndex == len(CHARS) {
+					chars = append(chars, "-")
+				} else {
+					chars = append(chars, string(CHARS[charIndex]))
+				}
+			}
+			items = append(items, strings.Join(chars, ""))
+		}
+
+		res := strings.Join(items, "-")
+
+		if testValidity(res) {
+			return generate(false)
+		} else {
+			return res
+		}
 	}
 }

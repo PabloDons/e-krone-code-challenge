@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	fmt.Println(wholeStory("100-abc-200-def-350-g"))
+	fmt.Println(storyStats("100-abc-200-def-350-ghij-3-a"))
 }
 
 /*  Test the validity of a string in the spec
@@ -83,8 +84,50 @@ func wholeStory(str string) string {
  *  Returns some stats about the string
  *
  *	Estimated time: 25min
- *  Used time: ...
+ *  Used time: 22min
  */
-func storyStats() (shortest string, longest string, meanLen int, sameLen []string) {
+func storyStats(str string) (shortest string, longest string, meanLen float32, sameLen []string) {
+	items := strings.Split(str, "-")
+	sameLen = []string{}
 
+	if len(items) < 2 {
+		return "", "", 0, sameLen
+	}
+
+	// Skipping first word and initializing expected state
+	wordCount := 1
+	wordLenSum := len(items[1])
+	shortest = items[1]
+	longest = items[1]
+
+	for i := 3; i < len(items); i += 2 {
+		wordLen := len(items[i])
+		// meanLen
+		wordCount += 1
+		wordLenSum += wordLen
+
+		// shortest
+		if wordLen < len(shortest) {
+			shortest = items[i]
+		}
+
+		// longest
+		if wordLen > len(longest) {
+			longest = items[i]
+		}
+	}
+
+	meanLen = float32(wordLenSum) / float32(wordCount)
+
+	// sameLen
+	for i := 1; i < len(items); i += 2 {
+		meanCeil := int(math.Ceil(float64(meanLen)))
+		meanFloor := int(math.Floor(float64(meanLen)))
+
+		if len(items[i]) == meanCeil || len(items[i]) == meanFloor {
+			sameLen = append(sameLen, items[i])
+		}
+	}
+
+	return shortest, longest, meanLen, sameLen
 }

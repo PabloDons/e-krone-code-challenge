@@ -11,12 +11,6 @@ import (
 
 const CHARS string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
-func main() {
-	generated := generate(false)
-	fmt.Println(generated)
-	fmt.Println(testValidity(generated))
-}
-
 /*  Test the validity of a string in the spec
  *
  *	returns boolean flag true if the given string complies with the format, or false if the string does not comply

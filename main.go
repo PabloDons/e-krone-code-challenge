@@ -25,8 +25,9 @@ func testValidity(str string) bool {
 	// Assumption of number format creates some caveats:
 	// Accepts invalid numbers like 00123
 	// Declines base prefixes like 0xaf and any numbers with base > 10
+	// Declines empty strings
 	for i := 0; i < len(items); i += 2 {
-		match, _ := regexp.MatchString("[0-9]", items[i])
+		match, _ := regexp.MatchString("^[0-9]+$", items[i])
 		if !match {
 			return false
 		}

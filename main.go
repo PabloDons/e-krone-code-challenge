@@ -41,3 +41,13 @@ func testValidity(str string) bool {
 
 	return true
 }
+
+/*  Takes a string in the given spec
+ *  Returns the average of the number parts
+ *
+ *  Estimated time: 10min
+ *  Used time: ...
+ */
+func averageNumber(str string) {
+
+}

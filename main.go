@@ -9,6 +9,8 @@ import (
 	"strings"
 )
 
+const CHARS string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+
 func main() {
 	generated := generate(true)
 	fmt.Println(generated)
@@ -144,8 +146,6 @@ func storyStats(str string) (shortest string, longest string, meanLen float32, s
  *  Estimated time: 30min
  *  Used time: ...
  */
-const CHARS string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-
 func generate(valid bool) string {
 	items := []string{}
 	if valid {

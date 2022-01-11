@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
 func main() {
-	fmt.Println(testValidity("456-abc-123-def-3"))
-
+	fmt.Println(averageNumber("100-abc-200-def-350"))
 }
 
 /*  Test the validity of a string in the spec
@@ -46,8 +46,18 @@ func testValidity(str string) bool {
  *  Returns the average of the number parts
  *
  *  Estimated time: 10min
- *  Used time: ...
+ *  Used time: 6min
  */
-func averageNumber(str string) {
+func averageNumber(str string) float32 {
+	items := strings.Split(str, "-")
+	count := 0
+	sum := 0
 
+	for i := 0; i < len(items); i += 2 {
+		count += 1
+		num, _ := strconv.Atoi(items[i])
+		sum += num
+	}
+
+	return float32(sum) / float32(count)
 }

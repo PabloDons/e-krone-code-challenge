@@ -61,3 +61,13 @@ func averageNumber(str string) float32 {
 
 	return float32(sum) / float32(count)
 }
+
+/*  Takes a string in the given spec
+ *  Returns a text that is composed from all the text words separated by spaces
+ *
+ *  Estimated time: 5min
+ *  Used time: ...
+ */
+func wholeStory(str string) string {
+	return ""
+}
